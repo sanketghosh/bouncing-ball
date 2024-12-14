@@ -5,6 +5,7 @@
 #define HEIGHT 700
 #define COLOR_WHITE 0xffffffff
 #define COLOR_BLACK 0x00000000
+#define COLOR_ORANGISH 0xff9966
 
 struct Circle{
     int x;
@@ -12,6 +13,15 @@ struct Circle{
     int radius;
 };
 
+/**
+    - PARAMS:
+        - SDL_Surface* surface: The SDL surface to draw on.
+        - struct Circle circle: The circle to fill, defined by its center coordinates (x, y) and radius.
+
+    - DESCRIPTION: This function iterates over each pixel within the circle's bounding box and checks if it lies within the circle. If it does, the pixel is filled with white color.
+
+    - NOTE: This function assumes that the SDL surface is already initialized and that the circle's radius is non-negative.
+*/
 
 void FillCircle(SDL_Surface* surface, struct Circle circle){
 
@@ -30,7 +40,7 @@ void FillCircle(SDL_Surface* surface, struct Circle circle){
             // is co-ordinate within circle
             if(center_distance_squared<radius_squared){
                 SDL_Rect pixel = (SDL_Rect){x,y,1,1};
-                SDL_FillRect(surface, &pixel, COLOR_WHITE);
+                SDL_FillRect(surface, &pixel, COLOR_ORANGISH);
             }
         }
     }
